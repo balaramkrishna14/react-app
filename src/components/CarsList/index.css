@@ -1,0 +1,79 @@
+.add-car-div{
+   /*margin-right: auto;*/
+   float: right;
+   margin-bottom: 20px;
+}
+.add-car{
+    
+    height: 40px;
+    width: 90px;
+    color: white;
+    font-size: 15px;
+    border-radius: 3px;
+    border: none;
+    background-color: blue;
+}
+.car-app{
+    margin: auto;
+    height: 150px;
+    width: 500px;
+    background-color: orange;
+    padding: 50px;
+    margin-bottom: 20px;
+}
+
+.start{
+    background:green;
+   /* height: 30px;
+    width: 100px*/
+    height: 40px;
+    width: 70px;
+    color: white;
+    font-size: 17px;
+    border-radius: 3px;
+    border: none;
+
+}
+
+.stop{
+    background:red;
+  /*  height: 30px;
+    width: 100px*/
+    height: 40px;
+    width: 70px;
+    color: white;
+    font-size: 17px;
+    border-radius: 3px;
+    border: none;
+
+    
+}
+
+.accelerate-button{
+    height: 40px;
+    width: 120px;
+    background-color: gray;
+    color: white;
+    font-size: 17px;
+    border-radius: 3px;
+    border: none;
+    margin-right: 100px;
+    margin-top: 30px;
+    
+}
+.decelerate-button{
+    height: 40px;
+    width: 130px;
+    background-color: gray;
+    color: white;
+    font-size: 17px;
+    border-radius: 3px;
+    border: none;
+    margin-top: 30px;
+}
+
+.close-button{
+    font-size: 20px;
+    /*margin-right: auto;*/
+    float: right;
+}
