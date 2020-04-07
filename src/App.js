@@ -11,7 +11,8 @@ import CountriesDashBoardApp from './components/Countries/DashBoardApp.js';
 import './components/Countries/Countries.css';
 
 import CountryDetails from './components/Countries/CountryDetails.js';
-//import {Header} from './components/Countries/header.js';
+
+import EmojiGame from './components/EmojiGame/EmojiGame.js';
 
 import {
   BrowserRouter as Router,
@@ -65,8 +66,14 @@ export default class App extends React.Component {
             </li>
             
             <li>
+              <Link to="EmojiGame">Emoji Game App</Link>
+            </li>
+            
+            
+            <li>
               <Link to="CountriesDashBoardApp">Countries DashBoardApp</Link>
             </li>
+            
             
           </ul>
         </nav>
@@ -87,22 +94,29 @@ export default class App extends React.Component {
             <ToDo />
           </Route>
           
+          
           <Route path="/FormComponents">
             <FormComponents />
           </Route>
           
+          <Route path="/EmojiGame">
+            <EmojiGame onChangeTheme={this.onChangeTheme} selectedTheme={this.state.selectedTheme}/>
+          </Route>
+          
+          
           <Route path="/CountriesDashBoardApp">
             <CountriesDashBoardApp onChangeTheme={this.onChangeTheme} selectedTheme={this.state.selectedTheme}/>
           </Route>
-          <Route path="/:id" children={<CountryDetails onChangeTheme={this.onChangeTheme} selectedTheme={this.state.selectedTheme}/>}/>
+          <Route path="/country-dashboard-app/details/:id" children={<CountryDetails onChangeTheme={this.onChangeTheme}
+          selectedTheme={this.state.selectedTheme}/>}/>
           
-        </Switch>
+          
+          </Switch>
       </div>
     </Router>
   );
 }
 }
-//<Route path="/:id" children={<Header />} />
 
 function Home() {
   return <h2>Home</h2>;

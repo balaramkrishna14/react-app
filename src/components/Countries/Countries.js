@@ -1,8 +1,8 @@
 import React from 'react';
 import CountryCard from './CountryCard.js';   
 import Loading from './Loading.js';
-class Countries extends React.Component{
 
+class Countries extends React.Component{
     renderCountries = () => {
         const {countries} = this.props;
         const {selectedTheme} = this.props;

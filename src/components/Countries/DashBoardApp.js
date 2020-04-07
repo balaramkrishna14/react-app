@@ -49,7 +49,7 @@ class CountriesDashBoardApp extends React.Component{
         filterCountriesBySearchText = (searchText) => {
             //console.log(searchText);
             const {countries} = this.state;
-            searchText = searchText.toLowerCase(); //+ searchText.slice(1);
+            searchText = searchText.toLowerCase();
                 if(this.state.region === "All"){
                     let selectedCountryByName = countries.filter(eachCountry =>{
                         return eachCountry.name.toLowerCase().search(searchText) !== -1;
@@ -87,8 +87,3 @@ class CountriesDashBoardApp extends React.Component{
 }
 
 export default CountriesDashBoardApp;
-
-//onChangeTheme = () => {}
-//onChangeSearchText = () => {}
-//onChangeSelectedRegion = () => {}
-        

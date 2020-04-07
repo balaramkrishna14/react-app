@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
  
 class CountryCard extends React.Component{
     
-    navigateToCountryDetailsPage(){
+    navigateToCountryDetailsPage = () =>{
       const {history}=this.props;
       const {countryDetail} = this.props;
       history.push({
@@ -18,7 +18,7 @@ class CountryCard extends React.Component{
         const {selectedTheme} = this.props;
         return(
             
-            <div className={selectedTheme === "light" ? "country-card-light-mode" : "country-card-dark-mode"} onClick={() => this.navigateToCountryDetailsPage()}>
+            <div className={selectedTheme === "light" ? "country-card-light-mode" : "country-card-dark-mode"} onClick={this.navigateToCountryDetailsPage}>
                 <img className="flag-img" src={countryDetail.flag} alt="not found" />
                 <div>
                 <div className="country-detail-name"><b>{countryDetail.name}</b></div>

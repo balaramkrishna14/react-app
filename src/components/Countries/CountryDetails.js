@@ -51,17 +51,3 @@ class CountryDetails extends React.Component{
 }
            
 export default withRouter (CountryDetails);
-
-/* componentDidMount = (event) => {
-            fetch('https://restcountries.eu/rest/v2/all')
-            .then(response => response.json())
-            .then(findresponse => {
-                    this.getCountryDetails(findresponse);
-            });
-    }
-    
-    getCountryDetails = (data) => {
-        this.setState({
-            selectedCountryDetail:data
-        });
-    }*/
