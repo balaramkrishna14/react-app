@@ -5,10 +5,11 @@ import {withRouter} from 'react-router-dom';
 class CountryCard extends React.Component{
     
     navigateToCountryDetailsPage = () =>{
-      const {history}=this.props;
+      const {history,countries}=this.props;
       const {countryDetail} = this.props;
+     // console.log(countries,countryDetail);
       history.push({
-          state:this.props.countryDetail,
+          state:{country:countryDetail,countries},
           pathname:`/country-dashboard-app/details/${countryDetail.alpha3Code}`
       });   
     }

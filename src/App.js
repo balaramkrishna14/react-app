@@ -1,19 +1,6 @@
 import React from 'react';
-import {CarsList} from './components/CarsList/index.js';
-import './components/CarsList/index.css';
-
-import {ToDo} from './components/todoList/todoList.js';
-import './components/todoList/todoList.css';
-
-import {FormComponents} from './components/Forms/FormComponents.js';
-
-import CountriesDashBoardApp from './components/Countries/DashBoardApp.js';
-import './components/Countries/Countries.css';
-
-import CountryDetails from './components/Countries/CountryDetails.js';
-
-import EmojiGame from './components/EmojiGame/EmojiGame.js';
-
+import {observer} from 'mobx-react';//its is placed in dashboard-app for rerendering -----also import router if needed
+import {observable} from 'mobx';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,9 +8,27 @@ import {
   Link
 } from "react-router-dom";
 
+import {CarsList} from './components/CarsList/index.js';
+import './components/CarsList/index.css';
+import './components/todoList/todoList.css';
+import {FormComponents} from './components/Forms/FormComponents.js';
+import CountriesDashBoardApp from './components/Countries/DashBoardApp.js';
+import './components/Countries/Countries.css';
+import CountryDetails from './components/Countries/CountryDetails.js';
+import EmojiGame from './components/EmojiGame/EmojiGame.js';
+import CounterPage from './components/CounterPage/index.js';
+import CounterApp from './components/CounterApp/CounterApp.js';
+import themeStore from './stores/ThemeStore';
+
+import TodoApp from './components/todoList/TodoApp.js';
+
+//import {configure} from 'mobx';
+//configure({ enforceActions : true});
+
+@observer //-->it is a decorater
 export default class App extends React.Component {
   
-  constructor(props){
+  /*constructor(props){
     super(props);
     this.state={
       selectedTheme:'light',
@@ -33,15 +38,40 @@ export default class App extends React.Component {
   onChangeTheme = () => {
     if(this.state.selectedTheme === 'light'){
             this.setState({
-            selectedTheme:'dark',
+              selectedTheme:'dark',
             });    
         }
         else{
             this.setState({
-            selectedTheme:'light',
+              selectedTheme:'light',
             });
         }
+  }*/
+  @observable selectedTheme = "light"
+    
+  getCurrentTheme = () => {
+    //return this.selectedTheme;
+    return themeStore.selectedTheme;
+  } 
+  
+  //setCurrentTheme = (theme) => {
+  
+  onChangeTheme = (theme) => {
+    //this.selectedTheme = theme;
+    themeStore.setCurrentTheme(theme);
   }
+  
+  
+  /*onChangeTheme = () => {
+    //selectedTheme={this.getCurrentTheme()}
+    //selectedTheme={this.state.selectedTheme}
+    if(this.getCurrentTheme() === 'light'){
+              this.setCurrentTheme('dark');
+        }
+        else{
+              this.setCurrentTheme('light');
+        }
+  }*/
   
   render(){
   return (
@@ -58,7 +88,7 @@ export default class App extends React.Component {
             </li>
             
             <li>    
-              <Link to="ToDo">TodoList</Link>
+              <Link to="TodoApp">TodoList</Link>
             </li>
             
             <li>
@@ -66,14 +96,20 @@ export default class App extends React.Component {
             </li>
             
             <li>
-              <Link to="EmojiGame">Emoji Game App</Link>
-            </li>
-            
-            
-            <li>
               <Link to="CountriesDashBoardApp">Countries DashBoardApp</Link>
             </li>
             
+            <li>
+              <Link to="EmojiGame">Emoji Game App</Link>
+            </li>
+            
+            <li>
+              <Link to="counter-page">counter-page</Link>
+            </li>
+            
+            <li>
+              <Link to="counter-app">CounterApp</Link>
+            </li>
             
           </ul>
         </nav>
@@ -81,6 +117,13 @@ export default class App extends React.Component {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. comments*/}
         <Switch>
+          <Route exact path="/counter-page">
+           <CounterPage />
+          </Route>
+          
+          <Route exact path="/counter-app">
+           <CounterApp />
+          </Route>
           
           <Route path="/Home">
             <Home />
@@ -90,8 +133,8 @@ export default class App extends React.Component {
             <CarsList />
           </Route>
           
-          <Route path="/ToDo">
-            <ToDo />
+          <Route path="/TodoApp">
+            <TodoApp />
           </Route>
           
           
@@ -100,15 +143,14 @@ export default class App extends React.Component {
           </Route>
           
           <Route path="/EmojiGame">
-            <EmojiGame onChangeTheme={this.onChangeTheme} selectedTheme={this.state.selectedTheme}/>
+            <EmojiGame onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
           </Route>
           
           
           <Route path="/CountriesDashBoardApp">
-            <CountriesDashBoardApp onChangeTheme={this.onChangeTheme} selectedTheme={this.state.selectedTheme}/>
+            <CountriesDashBoardApp onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
           </Route>
-          <Route path="/country-dashboard-app/details/:id" children={<CountryDetails onChangeTheme={this.onChangeTheme}
-          selectedTheme={this.state.selectedTheme}/>}/>
+          <Route path="/country-dashboard-app/details/:id" component={CountryDetails}/>
           
           
           </Switch>

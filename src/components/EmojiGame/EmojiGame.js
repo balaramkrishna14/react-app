@@ -7,14 +7,11 @@ import EmojiCard from './EmojiCard.js';
 import WinOrLose from './WinOrLose.js';
 import HowToPlay from './HowToPlay.js';
 
-
-
 const TotalEmojisCards=styled.div`
     ${tw`flex flex-wrap p-5`}
     background-color: ${props => props.selectedTheme === 'dark' ? "#000" : 'whitesmoke'};
     color: ${props => props.selectedTheme === 'dark' ? 'white' : 'black'};
 `;
-
 
 class EmojiGame extends React.Component{
     //emojisId=0
@@ -39,10 +36,25 @@ class EmojiGame extends React.Component{
     }
     
     onEmojiClick = (emojiId) => {
-        //console.log(emojiId);
-        this.incrementScore();
-        this.shuffleEmojis();
+        const {score,emojis} = this.state;
+        const foundBool = emojis.find(findEmoji => findEmoji.id === emojiId);
+        if(foundBool.isClicked === false){
+            foundBool.isClicked = true;
+            this.incrementScore();
+            this.shuffleEmojis();
+            if(score === 11){
+                    this.setState({
+                        gameState:'WON',
+                    });
+                }
+        }
+        else{
+                this.setState({
+                gameState:'LOSE',
+                });
+        }
     }
+    
     
     shuffleEmojis = () => {
         const {emojis} = this.state;
@@ -51,47 +63,46 @@ class EmojiGame extends React.Component{
     }
     
     incrementScore = () => {
-        const {topScore,score} = this.state;
+        const {score} = this.state;
         this.setState({
             score:score + 1,
         });
-        //console.log("score",score);
-        if(topScore < score){
-            this.setState({
-                topScore:score,
-            });
-            //console.log("topscore",topScore);
-        }
-    }
-    
-    setTopScore = () => {
-        const {topScore,score} = this.state;
-       if(score === 12){
-           
-       } 
     }
     
     resetGame = () => {
+        let {emojis,topScore,score,} = this.state;
+        if(topScore < score){
+            topScore = score;
+        }    
         
+        emojis.map(findEmoji => findEmoji.isClicked = false);
+        this.setState({
+            topScore,
+            score:0,
+            gameState:'PLAYING'
+        });
     }
     
     render(){
         const {selectedTheme,onChangeTheme} = this.props;
-        const {emojis,score} = this.state;
+        const {emojis,score,gameState,topScore} = this.state;
         
         return(
         <div>
-        <Navbar score={score} selectedTheme={selectedTheme} onChangeTheme={onChangeTheme}/>
-        
-        <TotalEmojisCards selectedTheme={selectedTheme}>
-        {emojis.map((eachEmoji) => <EmojiCard onEmojiClick={this.onEmojiClick} selectedTheme={selectedTheme}
-        emojis={eachEmoji} key={eachEmoji.id}/>)}
-        </TotalEmojisCards>
-        <WinOrLose score={score}/>
+        <Navbar topScore={topScore} score={score} selectedTheme={selectedTheme} onChangeTheme={onChangeTheme}/>
+        {
+          (gameState === 'PLAYING')?<TotalEmojisCards selectedTheme={selectedTheme}>
+          {emojis.map((eachEmoji) => <EmojiCard onEmojiClick={this.onEmojiClick}
+          selectedTheme={selectedTheme}
+          emojis={eachEmoji} key={eachEmoji.id}/>)}
+          </TotalEmojisCards>
+          :<WinOrLose resetGame={this.resetGame} score={score} gameState={gameState} selectedTheme={selectedTheme}/>
+        }
         <HowToPlay selectedTheme={selectedTheme}/>
         </div>
         );
     }
 }
+
 
 export default EmojiGame;

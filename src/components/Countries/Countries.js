@@ -7,7 +7,7 @@ class Countries extends React.Component{
         const {countries} = this.props;
         const {selectedTheme} = this.props;
         return countries.map((eachCountry) => 
-        <CountryCard countryDetail={eachCountry} key={eachCountry.name} selectedTheme={selectedTheme}/>);
+        <CountryCard countries={countries} countryDetail={eachCountry} key={eachCountry.name} selectedTheme={selectedTheme}/>);
     }
     
     render(){

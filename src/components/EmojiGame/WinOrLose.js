@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
 const WinLoseDiv = styled.div`
+    ${tw`text-center`}
     background-color: ${props => props.selectedTheme === 'dark' ? '#1a202c' : '#fff'};
     color: ${props => props.selectedTheme === 'dark' ? 'white' : 'black'};
 `;
@@ -12,22 +13,22 @@ const ScoreCount = styled.div`
 `;
 
 const WinLoseText = styled.div`
-    ${tw`text-red-600 text-3xl`}
+    ${tw`text-red-500 m-3 text-2xl font-bold`}
 `;
 
 const PlayAgainButton = styled.button`
-    ${tw`bg-blue-700`}
+    ${tw`bg-blue-700 p-3 text-white text-2xl rounded`}
 `;
 
 class WinOrLose extends React.Component{
     
     render(){
-        const {selectedTheme,score} = this.props;
+        const {selectedTheme,score,gameState,resetGame} = this.props;
         return(
             <WinLoseDiv selectedTheme={selectedTheme}>
                 <ScoreCount>{score}</ScoreCount>
-                <WinLoseText>You Win!</WinLoseText>
-                <PlayAgainButton>Play Again</PlayAgainButton>
+                <WinLoseText>{(gameState === 'LOSE') ? 'You Lose!' : 'You Won!'}</WinLoseText>
+                <PlayAgainButton onClick={resetGame}>Play Again</PlayAgainButton>
             </WinLoseDiv>
             );
     }

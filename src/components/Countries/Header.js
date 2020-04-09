@@ -5,7 +5,7 @@ class Header extends React.Component{
     
     render(){
         const {selectedTheme,onChangeTheme} = this.props;
-        console.log(selectedTheme);
+        //console.log(selectedTheme);
         return(
             <div className={selectedTheme === "light" ? "countries-dashboard-nav-light-mode" :
                 "countries-dashboard-nav-dark-mode"}>

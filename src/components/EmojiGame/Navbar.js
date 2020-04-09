@@ -32,7 +32,7 @@ const ThemeButton = styled.button`
 class Navbar extends React.Component{
     
     render(){
-        const {selectedTheme,onChangeTheme,score} = this.props;
+        const {selectedTheme,onChangeTheme,score,topScore} = this.props;
         return(
             <EmojiNavbarHeader selectedTheme={selectedTheme}>
             
@@ -40,7 +40,7 @@ class Navbar extends React.Component{
             
             <Space2>
             <GameScore>Score: {score}</GameScore>
-            <GameTopScore>Top Score: {score}</GameTopScore>
+            <GameTopScore>Top Score: {topScore}</GameTopScore>
             <ThemeButton onClick={onChangeTheme} selectedTheme={selectedTheme}>
             { selectedTheme === "light" ? "LIGHT THEME" : "DARK THEME"}</ThemeButton>
             </Space2>
