@@ -1,4 +1,5 @@
 import React from 'react';
+//import {reaction} from 'mobx';
 import {observer} from 'mobx-react';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';

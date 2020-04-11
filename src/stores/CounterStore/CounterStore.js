@@ -1,4 +1,4 @@
-import {observable,action} from 'mobx';
+import {observable,action,reaction} from 'mobx';
 
 class CounterStore{
    // const appState = @observable({
@@ -23,6 +23,9 @@ class CounterStore{
             this.count=parseInt(displayCount);   
         }
     }
+    
+    showCount = reaction(() => {return this.count},(count) => {alert(count)},{delay:5000})
+    
 }
 
 export default CounterStore;

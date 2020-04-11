@@ -21,7 +21,9 @@ import CounterApp from './components/CounterApp/CounterApp.js';
 import themeStore from './stores/ThemeStore';
 
 import TodoApp from './components/todoList/TodoApp.js';
+import EventsApp from './components/EventsApp/EventsApp.js';
 
+import ProviderExample from './components/HandsonPractice/Handson.js';
 //import {configure} from 'mobx';
 //configure({ enforceActions : true});
 
@@ -111,6 +113,14 @@ export default class App extends React.Component {
               <Link to="counter-app">CounterApp</Link>
             </li>
             
+            <li>
+              <Link to="event-app">EventsApp</Link>
+            </li>
+            
+            <li>
+              <Link to="Provider-Example">ProviderExample</Link>
+            </li>
+            
           </ul>
         </nav>
 
@@ -137,7 +147,6 @@ export default class App extends React.Component {
             <TodoApp />
           </Route>
           
-          
           <Route path="/FormComponents">
             <FormComponents />
           </Route>
@@ -146,12 +155,18 @@ export default class App extends React.Component {
             <EmojiGame onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
           </Route>
           
-          
           <Route path="/CountriesDashBoardApp">
             <CountriesDashBoardApp onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
           </Route>
           <Route path="/country-dashboard-app/details/:id" component={CountryDetails}/>
           
+          <Route path="/event-app">
+            <EventsApp />
+          </Route>
+          
+          <Route path="/Provider-Example">
+            <ProviderExample />
+          </Route>
           
           </Switch>
       </div>
