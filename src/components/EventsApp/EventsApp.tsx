@@ -1,8 +1,8 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 
-import AddEvent from './AddEvent.js';
-import eventStore from '../../stores/EventStore/EventStore.js';
+import AddEvent from './AddEvent.tsx';
+import eventStore from '../../stores/EventStore/EventStore.ts';
 //import EventInstance from '../../stores/Models/Event/Event.js';
 
 @observer

@@ -8,22 +8,22 @@ import {
   Link
 } from "react-router-dom";
 
-import {CarsList} from './components/CarsList/index.js';
+import {CarsList} from './components/CarsList/';
 import './components/CarsList/index.css';
 import './components/todoList/todoList.css';
 import {FormComponents} from './components/Forms/FormComponents.js';
 import CountriesDashBoardApp from './components/Countries/DashBoardApp.js';
 import './components/Countries/Countries.css';
 import CountryDetails from './components/Countries/CountryDetails.js';
-import EmojiGame from './components/EmojiGame/EmojiGame.js';
-import CounterPage from './components/CounterPage/index.js';
-import CounterApp from './components/CounterApp/CounterApp.js';
 import themeStore from './stores/ThemeStore';
+import EmojiGame from './components/EmojiGame/EmojiGame.js';
+//import CounterPage from './components/CounterPage';
+import CounterApp from './components/CounterApp/CounterApp';
 
-import TodoApp from './components/todoList/TodoApp.js';
-import EventsApp from './components/EventsApp/EventsApp.js';
+import TodoApp from './components/todoList/TodoApp';
+import EventsApp from './components/EventsApp/EventsApp';
+import ProviderExample from './components/HandsonPractice/Handson';
 
-import ProviderExample from './components/HandsonPractice/Handson.js';
 //import {configure} from 'mobx';
 //configure({ enforceActions : true});
 
@@ -58,9 +58,9 @@ export default class App extends React.Component {
   
   //setCurrentTheme = (theme) => {
   
-  onChangeTheme = (theme) => {
+  onChangeTheme = () => {
     //this.selectedTheme = theme;
-    themeStore.setCurrentTheme(theme);
+    themeStore.setCurrentTheme();
   }
   
   
@@ -105,9 +105,6 @@ export default class App extends React.Component {
               <Link to="EmojiGame">Emoji Game App</Link>
             </li>
             
-            <li>
-              <Link to="counter-page">counter-page</Link>
-            </li>
             
             <li>
               <Link to="counter-app">CounterApp</Link>
@@ -127,9 +124,6 @@ export default class App extends React.Component {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. comments*/}
         <Switch>
-          <Route exact path="/counter-page">
-           <CounterPage />
-          </Route>
           
           <Route exact path="/counter-app">
            <CounterApp />
@@ -179,3 +173,12 @@ function Home() {
   return <h2>Home</h2>;
 }
 
+
+/*<li>
+              <Link to="counter-page">counter-page</Link>
+            </li>
+      
+      <Route exact path="/counter-page">
+           <CounterPage />
+          </Route>*/
+                

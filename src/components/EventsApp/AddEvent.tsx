@@ -4,8 +4,13 @@ import {observer} from 'mobx-react';
 //import tw from 'tailwind.macro';
 //import EventStore from '../../stores/EventStore/EventStore.js';
 
+type props = {
+    onAddEvent:Function
+}
+
+
 @observer
-class AddEvent extends React.Component{
+class AddEvent extends React.Component<props>{
     @observable
       eventName = ''
     @observable  

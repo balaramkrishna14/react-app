@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 //import tw from 'tailwind.macro';
 import {observable,action} from 'mobx';
 
-import AddTodo from './AddTodo.js';
+import AddTodo from './AddTodo';
 
 @observer
 class TodoApp extends React.Component{
@@ -61,7 +61,7 @@ class TodoApp extends React.Component{
     render(){
         //console.log(this);
         return(
-            <AddTodo addTodo={this.onAddTodo} />
+            <AddTodo addTodo={this.addTodo} />
             );
     }
 }

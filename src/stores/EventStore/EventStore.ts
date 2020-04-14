@@ -1,18 +1,18 @@
-import {action,observable,computed} from 'mobx';
-import Event from '../Models/Event/Event.js';
+import {action,observable} from 'mobx';
+import Event from '../Models/Event/Event';
 
 class EventStore{
-    @observable events 
+    @observable events: any[] 
     constructor(){
         this.events = [];
     }
     
-    onAddEvent(eventName,eventLocation){
+    onAddEvent(eventName: any,eventLocation: any){
         this.events.push(new Event(eventName,eventLocation));
         console.log(this.events);
     }
     @action.bound
-    onDeleteEvent(event){
+    onDeleteEvent(event: { target: { id: any; }; }){
         console.log(event);
         let deleteEvent = this.events.findIndex(findEvent => findEvent.id === event.target.id);
         console.log(deleteEvent);

@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
-import CounterStore from '../../stores/CounterStore/CounterStore.js';
+import CounterStore from '../../stores/CounterStore/CounterStore';
 
 const CounterAppDisplay=styled.div`
     ${tw`text-center m-auto`}
@@ -23,6 +23,8 @@ const Input=styled.input`
 `;
 
 const counterStore =  new CounterStore();
+
+
 @observer class CounterApp extends React.Component{
     
     handleIncrement = () => {

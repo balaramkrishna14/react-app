@@ -1,11 +1,16 @@
+
 import React from 'react';
 import {observer} from 'mobx-react';
 //import styled from '@emotion/styled';
 //import tw from 'tailwind.macro';
 import {observable,action} from 'mobx';
 
+type TodoProps = {
+    addTodo:Function
+}
+
 @observer
-class AddTodo extends React.Component{
+class AddTodo extends React.Component<TodoProps>{
     @observable todoTitle = '';
     
     @action.bound
@@ -17,7 +22,7 @@ class AddTodo extends React.Component{
     
     @action.bound
     onChangeInput(title){
-        this.todoTitle=title;
+        this.todoTitle=title.target.value;
     }
     
     render(){

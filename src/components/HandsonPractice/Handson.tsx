@@ -14,10 +14,10 @@ class ProviderExample extends Component{
     }
 }
 
-@inject('temp')
+
 @observer
 class B extends Component{
-    @observable name
+    @observable name:string=''
     
     onChange  = (event) => {
         this.name = event.target.value;
@@ -39,8 +39,13 @@ class B extends Component{
     }
 }
 
+type CProps ={
+    name:string,
+    temp?:string
+}
+
 @inject('temp')
-class C extends Component{
+class C extends Component<CProps>{
     render(){
         const {temp,name} = this.props;
         console.log('C temp',temp,name);

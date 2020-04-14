@@ -15,7 +15,7 @@ class CounterStore{
     }
     
     @action.bound
-    onChangeCount(displayCount){
+    onChangeCount(displayCount: string){
         if(isNaN(parseInt(displayCount))){
             this.count = 0;    
         }
