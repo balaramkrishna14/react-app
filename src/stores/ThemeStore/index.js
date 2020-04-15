@@ -2,7 +2,7 @@ import {observable,action} from 'mobx';
 //import {observable} from 'mobx';
 
 class ThemeStore{
-    @observable selectedTheme: string
+    @observable selectedTheme
     
     
     constructor(){

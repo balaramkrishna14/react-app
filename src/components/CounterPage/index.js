@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { observer} from 'mobx-react'
+import React, { Component } from 'react';
+import { observer} from 'mobx-react';
 
-import stores from '../../stores/CounterStore'
-const counterStore = stores.counterStore
+import stores from '../../stores/CounterStore';
+const counterStore = stores.counterStore;
 
 
 
@@ -10,12 +10,12 @@ const counterStore = stores.counterStore
 class CounterPage extends Component{
 
   handleIncrement = () => {
-    counterStore.incrementCounter()
+    counterStore.incrementCounter();
   }
 
   handleDecrement = () => {
     if (counterStore.count !== 0) {
-      counterStore.decrementCounter()
+      counterStore.decrementCounter();
     }
   }
 
@@ -26,8 +26,8 @@ class CounterPage extends Component{
         <button onClick={this.handleIncrement}>+</button>
         <button onClick={this.handleDecrement}>-</button>
       </div>
-    )
+    );
   }
 }
 
-export default CounterPage
+export default CounterPage;

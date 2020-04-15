@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import {observable,action} from 'mobx';
 
 class MobxTodoApp{
@@ -9,4 +9,4 @@ class MobxTodoApp{
         //todos : [{id,title,isCompleted}], 
         selectedFilter : 'ALL' //ACTIVE,COMPLETED    
         }
-}*/
+}

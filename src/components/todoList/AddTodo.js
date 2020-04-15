@@ -1,17 +1,12 @@
-
 import React from 'react';
 import {observer} from 'mobx-react';
 //import styled from '@emotion/styled';
 //import tw from 'tailwind.macro';
 import {observable,action} from 'mobx';
 
-type TodoProps = {
-    addTodo:Function
-}
-
 @observer
-class AddTodo extends React.Component<TodoProps>{
-    @observable todoTitle = '';
+class AddTodo extends React.Component{
+    @observable todoTitle
     
     @action.bound
     onAddTodo(){

@@ -23,7 +23,7 @@ import CounterApp from './components/CounterApp/CounterApp';
 import TodoApp from './components/todoList/TodoApp';
 import EventsApp from './components/EventsApp/EventsApp';
 import ProviderExample from './components/HandsonPractice/Handson';
-
+import GridMemoryGame from './components/GridMemoryGameApp/GridMemoryGame.js';
 //import {configure} from 'mobx';
 //configure({ enforceActions : true});
 
@@ -63,7 +63,7 @@ export default class App extends React.Component {
     themeStore.setCurrentTheme();
   }
   
-  
+                     
   /*onChangeTheme = () => {
     //selectedTheme={this.getCurrentTheme()}
     //selectedTheme={this.state.selectedTheme}
@@ -117,6 +117,10 @@ export default class App extends React.Component {
             <li>
               <Link to="Provider-Example">ProviderExample</Link>
             </li>
+    
+            <li>
+              <Link to="Grid-Memory-Game">GridMemoryGame</Link>
+            </li>
             
           </ul>
         </nav>
@@ -161,6 +165,11 @@ export default class App extends React.Component {
           <Route path="/Provider-Example">
             <ProviderExample />
           </Route>
+          
+          <Route path="/Grid-Memory-Game">
+            <GridMemoryGame onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
+          </Route>
+          
           
           </Switch>
       </div>
