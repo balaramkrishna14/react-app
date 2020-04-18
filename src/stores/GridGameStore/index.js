@@ -1,8 +1,8 @@
 import {observable,action} from 'mobx';
 
-import Cell from '../Models/CellModel';
+import CellModel from '../Models/CellModel';
 
-//const cell = new Cell();
+import gameLevelsData from '../../components/GridMemoryGameApp/GridCellWidth.js';
 
 class GameStore{
     @observable level
@@ -17,51 +17,74 @@ class GameStore{
         this.currentLevelGridCells = [];
         this.selectedCellsCount = 0;
         this.isGameCompleted = false;
-    }
-    
-    @action.bound
-    onCellClick(){
-        
+        this.setGridCells();
     }
     
     @action.bound
     setGridCells(){
-        
+       let newArray = [];
+       let creatingCellCount = gameLevelsData[this.level].gridSize ** 2;
+       for(let i = 1; i <= creatingCellCount; i++){
+           if(i <= gameLevelsData[this.level].gridSize){
+               const eachCellObject = new CellModel(Math.random(), true);
+               newArray.push(eachCellObject);
+           }else{
+               const eachCellObject = new CellModel(Math.random(), false);
+                newArray.push(eachCellObject);
+           } 
+       }
+       this.currentLevelGridCells = newArray.sort(() => Math.random() - 0.5);
     }
     
     @action.bound
     goToNextLevelAndUpdateCells(){
-        
+        if(this.selectedCellsCount === gameLevelsData[this.level].gridSize){
+            this.level++;
+            this.resetSelectedCellsCount();
+            this.setGridCells();
+        }
+            
     }
     
     @action.bound
     goToInitialLevelAndUpdateCells(){
-        
+        this.resetSelectedCellsCount();
+        this.currentLevelGridCells = [];
+        this.setGridCells();
     }
     
     @action.bound
     resetSelectedCellsCount(){
-        
+        this.selectedCellsCount = 0;
     }
     
     @action.bound
     incrementSelectedCellsCount(){
-        
+        this.selectedCellsCount++;
+        this.goToNextLevelAndUpdateCells();
     }
     
     @action.bound
     onPlayAgainClick(){
-        
+       this.setTopLevel();
+       this.level = 0; 
+       this.setTopLevel();
+       this.goToInitialLevelAndUpdateCells();
+       this.resetGame();
     }
     
     @action.bound
     resetGame(){
-        
+        this.setTopLevel();
+        this.level = 0;
+        this.goToInitialLevelAndUpdateCells();
     }
     
     @action.bound
     setTopLevel(){
-        
+       if(this.topLevel < this.level){
+           this.topLevel = this.level;
+       }    
     }
 }
 

@@ -4,10 +4,9 @@ import {observable} from 'mobx';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-
+import Home from './components/Home/Home.js'; 
 import {CarsList} from './components/CarsList/';
 import './components/CarsList/index.css';
 import './components/todoList/todoList.css';
@@ -17,7 +16,7 @@ import './components/Countries/Countries.css';
 import CountryDetails from './components/Countries/CountryDetails.js';
 import themeStore from './stores/ThemeStore';
 import EmojiGame from './components/EmojiGame/EmojiGame.js';
-//import CounterPage from './components/CounterPage';
+import CounterPage from './components/CounterPage';
 import CounterApp from './components/CounterApp/CounterApp';
 
 import TodoApp from './components/todoList/TodoApp';
@@ -79,52 +78,7 @@ export default class App extends React.Component {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="Home">Home</Link>
-            </li>
-            
-            <li>
-              <Link to="CarsList">CarsList</Link>
-            </li>
-            
-            <li>    
-              <Link to="TodoApp">TodoList</Link>
-            </li>
-            
-            <li>
-              <Link to="FormComponents">Form Component</Link>
-            </li>
-            
-            <li>
-              <Link to="CountriesDashBoardApp">Countries DashBoardApp</Link>
-            </li>
-            
-            <li>
-              <Link to="EmojiGame">Emoji Game App</Link>
-            </li>
-            
-            
-            <li>
-              <Link to="counter-app">CounterApp</Link>
-            </li>
-            
-            <li>
-              <Link to="event-app">EventsApp</Link>
-            </li>
-            
-            <li>
-              <Link to="Provider-Example">ProviderExample</Link>
-            </li>
-    
-            <li>
-              <Link to="Grid-Memory-Game">GridMemoryGame</Link>
-            </li>
-            
-          </ul>
-        </nav>
-
+        
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. comments*/}
         <Switch>
@@ -132,9 +86,9 @@ export default class App extends React.Component {
           <Route exact path="/counter-app">
            <CounterApp />
           </Route>
-          
-          <Route path="/Home">
-            <Home />
+      
+          <Route exact path="/counter-page">
+           <CounterPage />
           </Route>
           
           <Route path="/CarsList">
@@ -170,6 +124,9 @@ export default class App extends React.Component {
             <GridMemoryGame onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
           </Route>
           
+          <Route path="/">
+            <Home />
+          </Route>
           
           </Switch>
       </div>
@@ -178,16 +135,4 @@ export default class App extends React.Component {
 }
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-
-/*<li>
-              <Link to="counter-page">counter-page</Link>
-            </li>
-      
-      <Route exact path="/counter-page">
-           <CounterPage />
-          </Route>*/
                 

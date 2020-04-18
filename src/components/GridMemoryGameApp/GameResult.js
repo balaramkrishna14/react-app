@@ -1,10 +1,11 @@
 import React from 'react';
+import {observer} from 'mobx-react';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
 const WinResultDiv = styled.div`
-    ${tw`text-center`}
-    background-color: ${props => props.selectedTheme === 'dark' ? '#1a202c' : '#fff'};
+    ${tw`text-center mt-16`}
+    background-color: ${props => props.selectedTheme === 'dark' ? '#000' : 'whitesmoke'};
     color: ${props => props.selectedTheme === 'dark' ? 'white' : 'black'};
 `;
 
@@ -20,19 +21,21 @@ const PlayAgainButton = styled.button`
     ${tw`bg-blue-700 p-3 text-white text-2xl rounded`}
 `;
 
+@observer
 class GameResult extends React.Component{
     
     onPlayAgainClick = () => {
-        
+        const {onPlayAgainClick} = this.props;
+        onPlayAgainClick();
     }
     
     render(){
-        const {selectedTheme,onPlayAgainClick,topLevel} = this.props;
+        const {selectedTheme,topLevel} = this.props;
         return(
             <WinResultDiv selectedTheme={selectedTheme}>
                 <LevelCount>{topLevel}</LevelCount>
                 <WinText>Congratulations! You completed all the levels.</WinText>
-                <PlayAgainButton onClick={onPlayAgainClick}>Play Again</PlayAgainButton>
+                <PlayAgainButton onClick={this.onPlayAgainClick}>Play Again</PlayAgainButton>
             </WinResultDiv>
         );
     }
