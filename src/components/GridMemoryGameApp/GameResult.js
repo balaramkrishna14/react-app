@@ -30,10 +30,10 @@ class GameResult extends React.Component{
     }
     
     render(){
-        const {selectedTheme,topLevel} = this.props;
+        const {selectedTheme,level} = this.props;
         return(
             <WinResultDiv selectedTheme={selectedTheme}>
-                <LevelCount>{topLevel}</LevelCount>
+                <LevelCount>{level}</LevelCount>
                 <WinText>Congratulations! You completed all the levels.</WinText>
                 <PlayAgainButton onClick={this.onPlayAgainClick}>Play Again</PlayAgainButton>
             </WinResultDiv>

@@ -1,8 +1,8 @@
 import {observable,action} from 'mobx';
 
-import CellModel from '../Models/CellModel';
-
 import gameLevelsData from '../../components/GridMemoryGameApp/GridCellWidth.js';
+
+import CellModel from '../Models/CellModel';         
 
 class GameStore{
     @observable level
@@ -68,7 +68,6 @@ class GameStore{
     onPlayAgainClick(){
        this.setTopLevel();
        this.level = 0; 
-       this.setTopLevel();
        this.goToInitialLevelAndUpdateCells();
        this.resetGame();
     }

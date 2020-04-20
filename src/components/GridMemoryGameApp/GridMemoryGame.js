@@ -22,17 +22,17 @@ class GridMemoryGame extends React.Component{
         const {selectedTheme,onChangeTheme} = this.props;
         return(
             <GridMemorySpace selectedTheme={selectedTheme}>
+                
                 <Header level = {gameStore.level} gameLevelsData = {gameLevelsData} topLevel = {gameStore.topLevel} 
                 selectedTheme = {selectedTheme} onChangeTheme = {onChangeTheme} />
                 
-                {(gameStore.level === gameLevelsData.length - 4) ?
-                <GameResult onPlayAgainClick = {gameStore.onPlayAgainClick} topLevel = {gameStore.topLevel} 
+                {(gameStore.level === gameLevelsData.length - 6) ?
+                <GameResult onPlayAgainClick = {gameStore.onPlayAgainClick} level = {gameStore.level} 
                 selectedTheme = {selectedTheme} onChangeTheme = {onChangeTheme} /> :
                 <GameField resetGame = {gameStore.resetGame} incrementSelectedCellsCount = {gameStore.incrementSelectedCellsCount} 
                 selectedTheme={selectedTheme} gameLevelsData = {gameLevelsData} level = {gameStore.level}
                 currentLevelGridCells = {gameStore.currentLevelGridCells} 
-                onHandleCellClick = {this.onHandleCellClick} /> 
-                
+                onHandleCellClick = {this.onHandleCellClick} />
                 }
             </GridMemorySpace>
             );

@@ -12,7 +12,7 @@ const DisplayingEachCell = styled.button`
     height: ${props => props.eachCellWidth}px;
     margin: 3px;
 `;
-
+                                        
 @observer
 class Cell extends React.Component{
     @observable shouldShowHiddenCells;
@@ -28,17 +28,18 @@ class Cell extends React.Component{
     
     componentDidMount = () => {
        const {level,gameLevelsData,resetGame} = this.props;
+       const {hiddenCellCount} = gameLevelsData[level];
        this.timeCount = setTimeout(() => {
             this.shouldShowHiddenCells = false;
             clearTimeout(this.timeCount);
         },
-        gameLevelsData[level].hiddenCellCount * 1000);
+        hiddenCellCount * 1000);
         
         this.totalTimeCount = setTimeout(() => {
               resetGame();
               clearTimeout(this.totalTimeCount);
         },
-        gameLevelsData[level].hiddenCellCount * 3000);
+        hiddenCellCount * 3000);
     }
     
     componentWillUnmount = () => {
