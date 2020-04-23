@@ -1,5 +1,5 @@
 import React from 'react';
-import {observer} from 'mobx-react';//its is placed in dashboard-app for rerendering -----also import router if needed
+import {observer,Provider} from 'mobx-react';//its is placed in dashboard-app for rerendering -----also import router if needed
 import {observable} from 'mobx';
 import {
   BrowserRouter as Router,
@@ -18,11 +18,14 @@ import themeStore from './stores/ThemeStore';
 import EmojiGame from './components/EmojiGame/EmojiGame.js';
 import CounterPage from './components/CounterPage';
 import CounterApp from './components/CounterApp/CounterApp';
+import UsersPage from './components/UsersPage';
 
 import TodoApp from './components/todoList/TodoApp';
 import EventsApp from './components/EventsApp/EventsApp';
 import ProviderExample from './components/HandsonPractice/Handson';
 import GridMemoryGame from './components/GridMemoryGameApp/GridMemoryGame.js';
+
+import stores from './stores';
 //import {configure} from 'mobx';
 //configure({ enforceActions : true});
 
@@ -61,7 +64,6 @@ export default class App extends React.Component {
     //this.selectedTheme = theme;
     themeStore.setCurrentTheme();
   }
-  
                      
   /*onChangeTheme = () => {
     //selectedTheme={this.getCurrentTheme()}
@@ -76,6 +78,7 @@ export default class App extends React.Component {
   
   render(){
   return (
+    <Provider {...stores}>
     <Router basename={process.env.PUBLIC_URL}>
       <div>
         
@@ -124,6 +127,8 @@ export default class App extends React.Component {
             <GridMemoryGame onChangeTheme={this.onChangeTheme} selectedTheme={this.getCurrentTheme()}/>
           </Route>
           
+          <Route exact path="/Users" component = {UsersPage} />
+          
           <Route path="/">
             <Home />
           </Route>
@@ -131,6 +136,7 @@ export default class App extends React.Component {
           </Switch>
       </div>
     </Router>
+  </Provider>  
   );
 }
 }

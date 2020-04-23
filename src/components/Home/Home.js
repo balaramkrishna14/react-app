@@ -50,6 +50,10 @@ export default class Home extends React.Component{
               <Link to="Grid-Memory-Game">GridMemoryGame</Link>
             </li>
             
+            <li>
+              <Link to="Users">UsersPage</Link>
+            </li>
+            
           </ul>
         </nav>
         );

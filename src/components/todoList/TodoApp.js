@@ -1,67 +1,75 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-//import styled from '@emotion/styled';
-//import tw from 'tailwind.macro';
-import {observable,action} from 'mobx';
+import styled from '@emotion/styled';
+import tw from 'tailwind.macro';
 
-import AddTodo from './AddTodo';
+import todoStore from '../../stores/TodoStore';
+import AddTodo from './AddTodo.js';
+import TodoList from './TodoList.js';
+import TodoFooter from './TodoFooter.js';
+
+const Title = styled.div`
+   ${tw`font-thin text-red-600 text-6xl m-12`};
+`;
+
+const MainDisplay = styled.div`
+   ${tw`flex flex-col justify-center items-center`};
+`;
 
 @observer
 class TodoApp extends React.Component{
-    todoId=0
-    @observable
-    state = {
-        todos : [],
-        selectedFilter : 'ALL' //ACTIVE,COMPLETED
+    
+    onAddTodo = (title) => {
+        todoStore.onAddTodo(title);
     }
     
-    @action.bound
-    addTodo(title){
-        //const {todos} = this.state;
-        
-        //todos.push({id:++this.todoId,title,isCompleted:false});
-        console.log(1);
+    onRemoveTodo = (particularTodo) => {
+        todoStore.onRemoveTodo(particularTodo);
     }
     
-    @action.bound
-    onRemoveTodo(){
-        
+    onCompleteTodo = (particularTodo) =>{
+        todoStore.onCompleteTodo(particularTodo);
     }
     
-    @action.bound
-    onCompleteTodo(){
+    onUpdateTodoTitle = (particularTodo,updatedTodoText) => {
+        todoStore.onUpdateTodoTitle(particularTodo,updatedTodoText);
+    }
+    
+    getActiveTodosCount = () => {
+        return todoStore.ActiveTodosCount;
         
     }
     
-    @action.bound
-    onUpdateTodoTitle(){
-        
+    onChangeSelectedFilter = (updatingSelectedFilter) => {
+        todoStore.onChangeSelectedFilter(updatingSelectedFilter);
     }
     
-    @action.bound
-    onChangeSelectedFilter(){
-        
+    getFilteredTodos = () => {
+        return todoStore.FilteredTodos;
     }
     
-    @action.bound
-    onClearCompleted(){
-        
-    }
-    
-    @action.bound
-    getActiveTodoCount(){
-        
-    }
-    
-    @action.bound
-    getFilteredTodos(){
-        
+    onClearCompleted = () => {
+        todoStore.onClearCompleted();
     }
     
     render(){
-        //console.log(this);
         return(
-            <AddTodo addTodo={this.addTodo} />
+            <MainDisplay>
+            <Title>ToDos</Title>
+            <AddTodo onAddTodo={this.onAddTodo} />
+            
+            <TodoList todos={this.getFilteredTodos()}
+                      onUpdateTodoTitle={this.onUpdateTodoTitle}
+                      onCompleteTodo={this.onCompleteTodo}
+                      onRemoveTodo={this.onRemoveTodo}
+            />
+             {(todoStore.todos.length > 0)?
+            <TodoFooter onClearCompleted={this.onClearCompleted} 
+                        activeTodosCount={this.getActiveTodosCount()}
+                        onChangeSelectedFilter={this.onChangeSelectedFilter}
+                        selectedFilter={this.selectedFilter}
+            />:<span></span>} 
+            </MainDisplay>
             );
     }
 }
