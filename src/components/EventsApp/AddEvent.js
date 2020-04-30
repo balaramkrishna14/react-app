@@ -6,10 +6,8 @@ import {observer} from 'mobx-react';
 
 @observer
 class AddEvent extends React.Component{
-    @observable
-      eventName
-    @observable  
-      eventLocation
+    @observable eventName
+    @observable eventLocation
     
     @action.bound
     onChangeEventName(event){

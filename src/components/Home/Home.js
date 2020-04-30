@@ -2,7 +2,22 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 export default class Home extends React.Component{
+  
+    /*gotoGridScreenIfLoggedIn = () => {
+      return (
+        <Redirect
+          to = {{
+            pathname : '/Grid-Memory-Game',
+          }}
+        />
+        );
+    }*/
+    
+  
     render(){
+      /*if(true){
+        return this.gotoGridScreenIfLoggedIn();
+      }*/
         return(
      <nav>
           <ul>
@@ -53,7 +68,7 @@ export default class Home extends React.Component{
             <li>
               <Link to="Users">UsersPage</Link>
             </li>
-            
+          
           </ul>
         </nav>
         );

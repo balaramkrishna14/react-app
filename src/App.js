@@ -1,4 +1,43 @@
 import React from 'react';
+import {Provider} from 'mobx-react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+import SignInPage from './authentication/components/SignInPage/SignInPage.js';
+import ProductsPage from './E-CommerceApp/components/ProductsPage/ProductsPage.js';
+import stores from './E-CommerceApp/stores';
+
+export default class App extends React.Component {
+  render(){
+  return (
+    <Provider {...stores}>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div>
+      
+        <Switch>
+      
+          <Route path="/Products-Page" component = {ProductsPage} />
+          <Route path="/" component = {SignInPage} />
+        </Switch>
+        
+      </div>
+    </Router>
+  </Provider>  
+  );
+}
+}
+
+//<Route path="/" component = {SignInPage} />
+          
+//<Route path="/Products-Page" component = {ProductsPage} />
+
+
+
+
+/*import React from 'react';
 import {observer,Provider} from 'mobx-react';//its is placed in dashboard-app for rerendering -----also import router if needed
 import {observable} from 'mobx';
 import {
@@ -6,7 +45,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Home from './components/Home/Home.js'; 
+//import Home from './components/Home/Home.js'; 
 import {CarsList} from './components/CarsList/';
 import './components/CarsList/index.css';
 import './components/todoList/todoList.css';
@@ -20,10 +59,13 @@ import CounterPage from './components/CounterPage';
 import CounterApp from './components/CounterApp/CounterApp';
 import UsersPage from './components/UsersPage';
 
+
 import TodoApp from './components/todoList/TodoApp';
 import EventsApp from './components/EventsApp/EventsApp';
 import ProviderExample from './components/HandsonPractice/Handson';
 import GridMemoryGame from './components/GridMemoryGameApp/GridMemoryGame.js';
+
+import SignInRoute from './authentication/routes/SignInRoute/SignInRoute.js'; 
 
 import stores from './stores';
 //import {configure} from 'mobx';
@@ -50,7 +92,7 @@ export default class App extends React.Component {
               selectedTheme:'light',
             });
         }
-  }*/
+  }
   @observable selectedTheme = "light"
     
   getCurrentTheme = () => {
@@ -74,7 +116,7 @@ export default class App extends React.Component {
         else{
               this.setCurrentTheme('light');
         }
-  }*/
+  }
   
   render(){
   return (
@@ -82,9 +124,10 @@ export default class App extends React.Component {
     <Router basename={process.env.PUBLIC_URL}>
       <div>
         
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. comments*/}
         <Switch>
+          <Route path="/">
+            <SignInRoute />
+          </Route>
           
           <Route exact path="/counter-app">
            <CounterApp />
@@ -129,9 +172,6 @@ export default class App extends React.Component {
           
           <Route exact path="/Users" component = {UsersPage} />
           
-          <Route path="/">
-            <Home />
-          </Route>
           
           </Switch>
       </div>
@@ -139,6 +179,8 @@ export default class App extends React.Component {
   </Provider>  
   );
 }
-}
+}*/
 
-                
+/*<Route path="/">
+    <Home />
+  </Route>*/
