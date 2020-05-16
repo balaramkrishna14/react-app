@@ -6,9 +6,17 @@ import {
   Route
 } from "react-router-dom";
 
-import SignInPage from './authentication/components/SignInPage/SignInPage.js';
+import SignInRoute from './authentication/routes/SignInRoute/SignInRoute';
 import ProductsPage from './E-CommerceApp/components/ProductsPage/ProductsPage.js';
-import stores from './E-CommerceApp/stores';
+import {productStore,cartStore} from './E-CommerceApp/stores';
+import {authStore} from "./authentication/stores";
+import {E_COMMERCE_SIGN_IN_PATH,E_COMMERCE_PRODUCTS_PATH} from "./authentication/constants/routeConstants/routeConstants";
+
+const stores={
+  authStore,
+  productStore,
+  cartStore
+};
 
 export default class App extends React.Component {
   render(){
@@ -19,8 +27,8 @@ export default class App extends React.Component {
       
         <Switch>
       
-          <Route path="/Products-Page" component = {ProductsPage} />
-          <Route path="/" component = {SignInPage} />
+          <Route path={E_COMMERCE_PRODUCTS_PATH} component = {ProductsPage} />
+          <Route path={E_COMMERCE_SIGN_IN_PATH} component = {SignInRoute} />
         </Switch>
         
       </div>

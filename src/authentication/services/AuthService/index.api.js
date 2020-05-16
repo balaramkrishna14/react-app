@@ -1,6 +1,6 @@
 import {create} from 'apisauce';
 import {networkCallWithApisauce} from '../../utils/APIUtils';
-import {apiMethods} from '../../constants/APIConstants';
+import {apiMethods} from '../../constants/routeConstants/APIConstants.js';
 
 class AuthService{
     api
@@ -10,14 +10,15 @@ class AuthService{
         });
     }
     
-    signInAPI(){
+    signInAPI(req){
+        //console.log(networkCallWithApisauce)
         return networkCallWithApisauce(
             this.api,
             'v1/signin/',
-            {},
+            req,
             apiMethods.get
         );
     }
 }
 
-export default AuthService;
+export {AuthService};

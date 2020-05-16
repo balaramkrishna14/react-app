@@ -35,7 +35,7 @@ const CartButtonDiv = styled.div`
     width:5%;
  `;   
 
-@inject('productStore','cartStore')
+@inject('productStore','cartStore','authStore')
 @observer
 class ProductsPage extends React.Component{
     
@@ -65,7 +65,7 @@ class ProductsPage extends React.Component{
     
     
     onClickSignOut = () => {
-        console.log(ACCESS_TOKEN,"product page");
+        //console.log(ACCESS_TOKEN,"product page");
         if(ACCESS_TOKEN.length > 0){
             this.props.history.replace({pathname:'/'});
             
@@ -75,6 +75,7 @@ class ProductsPage extends React.Component{
     }
     
     render(){
+        //console.log("pPage",this.props.authStore.getUserSignInAPIStatus);
         const {onSelectSize,totalNoOfProductsDisplayed,onChangeSortBy,getProductAPIStatus,getProductAPIError} = this.props.productStore;
         return(
             <Screen>

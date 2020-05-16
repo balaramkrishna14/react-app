@@ -1,84 +1,63 @@
 import React from 'react';
-import {observable,action} from 'mobx';
 import {observer} from 'mobx-react';
-import {withRouter} from 'react-router-dom';
 
-import {ACCESS_TOKEN} from '../../utils/StorageUtils.js';
+//import {ACCESS_TOKEN} from '../../utils/StorageUtils.js';
 import  {SignPage,SigninTitle,SignInFrom,FieldsInput,UserInput,SignInButton,WarningDiv} from '../../styledComponents/index.js';
+
 
 @observer
 class SignInPage extends React.Component{
-    @observable username
-    @observable password
-    @observable isSubmitted
-    constructor(){
-        super();
-        this.username = '';
-        this.password = '';
-        this.isSubmitted = false;
-    }
+    usernameRef = React.createRef();
     
-    @action.bound
-    onChangeUsername(event){
-        this.username = event.target.value;
+    componentDidMount(){
+        //document.getElementById("userName").focus();
+        this.usernameRef.current.focus();
     }
-    
-    @action.bound
-    onChangePassword(event){
-        this.password = event.target.value;
-    }
-    
-    @action.bound
-    onHandleButton(){
-        this.isSubmitted = true;
-        this.onClickSignIn();
-    }
-    
-    @action.bound
-    WarningDisplay(){
-        if(this.username.length === 0 && this.isSubmitted){
-            return <WarningDiv>Please enter username</WarningDiv>;
-        } else if(this.password.length === 0 && this.isSubmitted){
-            return <WarningDiv>Please enter password</WarningDiv>;
-        }else{
-            return null;
-        }
-    }
-    
-    @action.bound
+    /* @action.bound
     onClickSignIn(){
-        console.log(ACCESS_TOKEN,'signin page');
+       //console.log(ACCESS_TOKEN,'signin page');
        if(ACCESS_TOKEN.length > 0 && this.username.length > 0 && this.password.length > 0){
            this.props.history.replace({pathname: '/Products-Page' });
-          
        } else {
-          this.props.history.push({pathname: '/' }); 
-            
+          this.props.history.push({pathname: '/' });
        }
-    }
+    }*/
     
     render(){
+        const {
+            username,
+            password,
+            onChangeUsername,
+            onChangePassword,
+            onHandleButton,
+            warning
+        } = this.props;
+        
+        //alert(WarningDisplay());
         return(
             <SignPage>
                 <SignInFrom>
                     <FieldsInput>
                         <SigninTitle>Sign in</SigninTitle>                
-                            <UserInput value={this.username}
-                                onChange={this.onChangeUsername} 
+                            <UserInput value={username}
+                                ref={this.usernameRef}
+                                onChange={onChangeUsername} 
                                 placeholder="Username" 
                                 type="text"
                             />
-                            <UserInput value={this.password} 
-                                onChange={this.onChangePassword} 
+                            <UserInput value={password}
+                                ref={this.passwordRef}
+                                onChange={onChangePassword} 
                                 placeholder="Password" 
                                 type="password"
                             />
                         </FieldsInput>    
-                    <SignInButton onClick={this.onHandleButton}>Sign in</SignInButton>
-                    {this.WarningDisplay()}
+                    <SignInButton onClick={onHandleButton}>Sign in</SignInButton>
+                    <WarningDiv>{warning}</WarningDiv>
                 </SignInFrom>
             </SignPage>
-            );
+        );
     }
 }
-export default withRouter(SignInPage);
+
+export {SignInPage};
