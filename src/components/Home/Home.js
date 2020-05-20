@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
+import {E_COMMERCE_SIGN_IN_PATH} from "../../authentication/constants/routeConstants/routeConstants";
 export default class Home extends React.Component{
   
     /*gotoGridScreenIfLoggedIn = () => {
@@ -68,7 +69,15 @@ export default class Home extends React.Component{
             <li>
               <Link to="Users">UsersPage</Link>
             </li>
-          
+            
+            <li>
+              <Link to={E_COMMERCE_SIGN_IN_PATH}>E-Commerce App</Link>
+            </li>
+            
+            <li>
+              <Link to="Practice-Advanced-Concepts-Route">PracticeAdvancedConceptsRoute</Link>
+            </li>
+            
           </ul>
         </nav>
         );
