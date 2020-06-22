@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaRegMoon} from 'react-icons/fa';
+//import {FaRegMoon} from 'react-icons/fa';
 
 class Header extends React.Component{
     
@@ -18,32 +18,5 @@ class Header extends React.Component{
             );
     }
 }
-
+//"button-text-light-mode" : "button-text-dark-mode"}><FaRegMoon />
 export default Header;
-//export default withRouter (Header);
-
-/*state={
-           selectedTheme:'lightMode',
-           innerText:'Light Mode',
-           className:'countries-dashboard-nav-light-mode',
-           appbodyclassname:'countries-dashboard-body-light-mode'
-        };
-    
-    onChangeTheme = () => {
-        if(this.state.selectedTheme === 'lightMode'){
-            this.setState({
-            selectedTheme:'darkmode',
-            innerText:'Dark Mode',
-            className:'countries-dashboard-nav-dark-mode',
-            appbodyclassname:'countries-dashboard-body-dark-mode'
-            });    
-        }
-        else{
-            this.setState({
-            selectedTheme:'lightmode',
-            innerText:'Light Mode',
-            className:'countries-dashboard-nav-light-mode',
-            appbodyclassname:'countries-dashboard-body-light-mode'
-            });
-        }
-    }*/

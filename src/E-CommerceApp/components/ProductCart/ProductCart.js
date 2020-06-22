@@ -1,7 +1,7 @@
 import React from 'react';
 import {observable} from 'mobx';
 import {observer,inject} from 'mobx-react';
-import {FiShoppingCart} from 'react-icons/fi';
+//import {FiShoppingCart} from 'react-icons/fi';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
@@ -119,7 +119,7 @@ class ProductCart extends React.Component{
             </PakapakanaDiv>
             :
                 <CartButton onClick = {this.showCart}>
-                    <FiShoppingCart />
+                    {/*<FiShoppingCart />*/}
                     <CartCount>{cartStore.noOfProductsInCart}</CartCount>
                 </CartButton>
             

@@ -6,18 +6,19 @@ class ProductService{
     api
     constructor() {
         this.api = create({
-            baseURL : 'https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/'
+            baseURL : 'https://9ba0cd3ggi.execute-api.ap-south-1.amazonaws.com/ecommerce'
         });
     }
     
-    getProductsAPI(){
+    getProductsAPI(productsLimit,productsIndex){
         return networkCallWithApisauce(
             this.api,
-            'v1/products/',
+            `/products?limit=${productsLimit}&offset=${productsIndex}`,
             {},
             apiMethods.get
         );
     }
 }
-
+//https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/
+//v1/products/
 export default ProductService;

@@ -12,6 +12,8 @@ class ProductStore{
     //@observable productsAPIService
     @observable sizeFilter//[]
     @observable sortBy
+    @observable PageCounter;
+    @observable productsIndex;
     
     constructor(productService) {
         this.productService = productService;
@@ -19,9 +21,23 @@ class ProductStore{
     }
     
     @action.bound
+    onClickLeftButton(){
+        this.PageCounter--;
+        this.productsIndex = this.productsLimit * (this.PageCounter - 1);
+        this.getProductList();
+    }
+    
+    @action.bound
+    onClickRightButton(){
+        this.PageCounter++;
+        this.productsIndex = this.productsLimit * (this.PageCounter - 1);
+        this.getProductList();
+    }
+    
+    @action.bound
     setProductListResponse(productsData){
-        console.log(productsData);
-        const productsDetails = productsData.map((eachProduct) =>
+       // console.log(productsData);
+        const productsDetails = productsData.products.map((eachProduct) =>
              new ProductModel(eachProduct)
         );
         this.productList = productsDetails;
@@ -29,11 +45,14 @@ class ProductStore{
     
     @action.bound
     init() {
+        this.PageCounter = 1;
         this.getProductAPIStatus = API_INITIAL;
         this.getProductAPIError = null;
         this.productList = [];
         this.sizeFilter = [];
         this.sortBy = "SELECT"; //ASCENDING,DESCENDING
+        this.productsLimit = 3;
+        this.productsIndex = this.productsLimit * (this.PageCounter - 1);
     }
     
     @action.bound
@@ -101,7 +120,7 @@ class ProductStore{
     
     @action.bound
     getProductList() {
-        const productsPromise = this.productService.getProductsAPI();
+        const productsPromise = this.productService.getProductsAPI(this.productsLimit,this.productsIndex);
         return bindPromiseWithOnSuccess(productsPromise)
         .to(this.setGetProductListAPIStatus, this.setProductListResponse)
         .catch(this.setGetProductListAPIError);

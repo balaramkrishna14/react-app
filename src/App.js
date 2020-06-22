@@ -26,16 +26,14 @@ import EventsApp from './components/EventsApp/EventsApp';
 import ProviderExample from './components/HandsonPractice/Handson';
 import GridMemoryGame from './components/GridMemoryGameApp/GridMemoryGame.js';
 
-import SignInRoute from './authentication/routes/SignInRoute/SignInRoute.js'; 
 
 import stores from './stores';
 
+import SignInRoute from './authentication/routes/SignInRoute/SignInRoute.js'; 
 import ProductsPage from './E-CommerceApp/components/ProductsPage/ProductsPage.js';
 import {E_COMMERCE_SIGN_IN_PATH,E_COMMERCE_PRODUCTS_PATH} from "./authentication/constants/routeConstants/routeConstants";
 
 import {PracticeAdvancedConceptsRoute} from "./Common/routes/PracticeAdvancedConceptsRoute";
-
-
 
 @observer //-->it is a decorater
 export default class App extends React.Component {
@@ -135,8 +133,8 @@ export default class App extends React.Component {
           
           <Route exact path="/Users" component = {UsersPage} />
           
-          <Route path={E_COMMERCE_PRODUCTS_PATH} component = {ProductsPage} />
           <Route path={E_COMMERCE_SIGN_IN_PATH} component = {SignInRoute} />
+          <Route path={E_COMMERCE_PRODUCTS_PATH} component = {ProductsPage} />
 
           <Route path="/Practice-Advanced-Concepts-Route">
             <PracticeAdvancedConceptsRoute />

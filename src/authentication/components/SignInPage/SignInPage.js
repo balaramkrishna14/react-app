@@ -6,7 +6,7 @@ import  {SignPage,SigninTitle,SignInFrom,FieldsInput,UserInput,SignInButton,Warn
 
 
 @observer
-class SignInPage extends React.Component{
+class SigninPage extends React.Component{
     usernameRef = React.createRef();
     
     componentDidMount(){
@@ -60,4 +60,4 @@ class SignInPage extends React.Component{
     }
 }
 
-export {SignInPage};
+export {SigninPage};

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
-import { toast,ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+//import { toast,ToastContainer } from 'react-toastify';
+//import 'react-toastify/dist/ReactToastify.css';
 
 const EachProductCart = styled.div`
     ${tw`bg-white m-3 flex flex-col justify-center items-center`};
@@ -28,17 +28,17 @@ const CurrencyFormat = styled.span`
 
 class Product extends React.Component{
     
-    notify = () => {
+    /*notify = () => {
         toast.success("Product added to your cart!", {
             position: toast.POSITION.BOTTOM_CENTER,
             type: toast.TYPE.WARNING
         });
-    }
+    }*/
     
     onClickAddToCart = () => {
         const {onClickAddToCart,eachProduct} = this.props;
         
-        this.notify();
+        //this.notify();
         onClickAddToCart(eachProduct);
     }
     
@@ -57,7 +57,7 @@ class Product extends React.Component{
                 </div>
                 <div>or {eachProduct.installmentsCount} x {eachProduct.currencyFormat} {eachInstallment}</div>
                 <AddCartButton onClick = {this.onClickAddToCart}>Add to cart</AddCartButton>
-                <ToastContainer />
+                {/*<ToastContainer />*/}
             </EachProductCart>    
             );
     }

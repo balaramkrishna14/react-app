@@ -12,8 +12,10 @@ import LoadingWrapperWithFailure from '../../../components/common/LoadingWrapper
 import NoDataView from '../../../components/common/NoDataView';
 import {ACCESS_TOKEN} from '../../utils/StorageUtils.js';
 
+import {Pagination} from '../Pagination/Pagination.js';
+
 const Screen = styled.div`
-    ${tw`bg-white flex justify-start items-start`};
+    ${tw`mb-12 bg-white flex justify-start items-start`};
 `;
 
 const SizesDisplaySection = styled.div`
@@ -35,6 +37,10 @@ const CartButtonDiv = styled.div`
     width:5%;
  `;   
 
+const DisplayingPagination = styled.div`
+    float:right;
+`;
+
 @inject('productStore','cartStore','authStore')
 @observer
 class ProductsPage extends React.Component{
@@ -53,7 +59,6 @@ class ProductsPage extends React.Component{
     
     rendersUsersList = observer(() => {
         const {products} = this.props.productStore;
-        
         if(products.length === 0){
             <NoDataView />;
         }
@@ -76,7 +81,16 @@ class ProductsPage extends React.Component{
     
     render(){
         //console.log("pPage",this.props.authStore.getUserSignInAPIStatus);
-        const {onSelectSize,totalNoOfProductsDisplayed,onChangeSortBy,getProductAPIStatus,getProductAPIError} = this.props.productStore;
+        const {onSelectSize,
+               totalNoOfProductsDisplayed,
+               onChangeSortBy,
+               getProductAPIStatus,
+               getProductAPIError,
+               onClickLeftButton,
+               onClickRightButton,
+               PageCounter,
+               productsLimit
+        } = this.props.productStore;
         return(
             <Screen>
                 <SizesDisplaySection>
@@ -90,13 +104,14 @@ class ProductsPage extends React.Component{
                     />
                    
                 <LoadingWrapperWithFailure
-                    
                     apiStatus = {getProductAPIStatus}
                     apiError = {getProductAPIError}
                     onRetryClick = {this.doNetworkCalls}
                     renderSuccessUI = {this.rendersUsersList}
                 />    
-                
+                <DisplayingPagination>
+                    <Pagination productsLimit = {productsLimit} totalNoOfProductsDisplayed = {totalNoOfProductsDisplayed} PageCounter = {PageCounter} onClickLeftButton = {onClickLeftButton} onClickRightButton = {onClickRightButton}/>
+                </DisplayingPagination>
                 </ProductsDisplayingSection>
                 
                 <CartButtonDiv>

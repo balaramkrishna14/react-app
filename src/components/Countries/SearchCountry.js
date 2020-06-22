@@ -1,5 +1,5 @@
 import React from 'react';
-import {IoIosSearch} from 'react-icons/io';
+//import {IoIosSearch} from 'react-icons/io';
 
 class SearchCountry extends React.Component{
     state={
@@ -18,7 +18,7 @@ class SearchCountry extends React.Component{
         const {selectedTheme} = this.props;
         return(
             <div className={selectedTheme === "light" ? "boxing-light-mode" : "boxing-dark-mode"}>
-            <div><IoIosSearch className="search-icon"/></div>
+            {/*<div><IoIosSearch className="search-icon"/></div>*/}
             <input onChange={this.onChangeSearchText} className={selectedTheme === "light" ? "country-search-input-light-mode" : "country-search-input-dark-mode"} type="text" placeholder="Search for a Country..."/>
             </div>
             );

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header.js';
 import {withRouter} from 'react-router-dom';
-import {TiArrowLeft} from 'react-icons/ti';
+//import {TiArrowLeft} from 'react-icons/ti';
                                                 
 class CountryDetails extends React.Component{
     state={

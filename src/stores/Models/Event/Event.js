@@ -15,7 +15,7 @@ class Event{
     }
     
     onUpdateEventDetails = (eventName,eventLocation) => {
-     console.log(eventName,eventLocation);   
+     //console.log(eventName,eventLocation);   
     }
 }
 

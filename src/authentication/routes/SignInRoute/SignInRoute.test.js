@@ -24,11 +24,9 @@ describe("SignInRoute Tests", () => {
     let authAPI;
     let authStore;
     
-    
     beforeEach( () => {
         authAPI = new AuthService();
         authStore = new AuthStore(authAPI);
-        
     });
     
     afterEach(() => {
